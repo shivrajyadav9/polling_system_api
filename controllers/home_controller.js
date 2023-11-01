@@ -5,7 +5,7 @@ let home = async function (req, res) {
     try {
         let questions = await Question.find({}).populate('options');
 
-        return res.status(500).json({
+        return res.status(200).json({
             message: "All Questions",
             data: {
                 questions: questions
