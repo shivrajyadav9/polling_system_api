@@ -1,6 +1,8 @@
 import Question from '../models/question.js'
 import Option from '../models/option.js';
 
+
+// function to send all quections and their options in JSON format
 let home = async function (req, res) {
     try {
         let questions = await Question.find({}).populate('options');

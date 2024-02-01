@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-// mongoose.connect(`mongodb://0.0.0.0:27017/polling_system_api_development`);
-
 mongoose.connect('mongodb+srv://shivraj:mongodbcluster@cluster0.fk9lx9t.mongodb.net/PollingSystemApi?retryWrites=true&w=majority')
 
 

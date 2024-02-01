@@ -1,7 +1,7 @@
 import Question from '../models/question.js';
 import Option from '../models/option.js';
 
-
+// create a question
 let create = async function (req, res) {
     console.log(req.body);
     try {
@@ -22,6 +22,7 @@ let create = async function (req, res) {
     }
 }
 
+// delete a question
 let destroy = async function (req, res) {
     try {
         await Option.deleteMany({ question: req.params.id });
@@ -42,6 +43,7 @@ let destroy = async function (req, res) {
     }
 }
 
+// function to send a question requested by the question id
 let question = async function (req, res) {
     try {
         let question = await Question.findById(req.params.id).populate('options');

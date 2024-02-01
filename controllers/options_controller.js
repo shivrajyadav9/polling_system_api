@@ -1,6 +1,8 @@
 import Question from '../models/question.js';
 import Option from '../models/option.js';
 
+
+// create an option
 let create = async function (req, res) {
     try {
         let option = await Option.create({
@@ -9,10 +11,12 @@ let create = async function (req, res) {
             votes: 0
         });
 
+        //link to vote contains option id so it is added later to option once option is created and id is generated
         await Option.findByIdAndUpdate(option._id, {
-            link_to_vote: `http://localhost:4000/options/${option._id}/add_vote`
+            link_to_vote: `https://pollingsystemapi-k3ks.onrender.com/options/${option._id}/add_vote`
         })
 
+        // update options array in the question
         let updatedOption = await Option.findById(option._id);
         let question = await Question.findById(req.params.id).populate('options');
         question.options.push(option._id);
@@ -33,6 +37,8 @@ let create = async function (req, res) {
     }
 }
 
+
+// function to increase the vote count of an option
 let addVote = async function (req, res) {
     try {
         let option = await Option.findById(req.params.id);
@@ -56,7 +62,7 @@ let addVote = async function (req, res) {
     }
 }
 
-
+// delete an option
 let destroy = async function (req, res) {
     try {
         let option = await Option.findById(req.params.id);
